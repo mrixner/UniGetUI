@@ -29,6 +29,7 @@ namespace UniGetUI.PackageEngine.PackageClasses
         public bool RemoveDataOnUninstall { get; set; } = false;
         public bool PreRelease { get; set; } = false;
         public string CustomInstallLocation { get; set; } = "";
+        public Dictionary<string, string> CustomEnvironmentVariables { get; set; } = new Dictionary<string, string>();
 
         public Package Package { get; }
 
@@ -102,6 +103,7 @@ namespace UniGetUI.PackageEngine.PackageClasses
             if (options.InstallationScope != "" && CommonTranslations.InvertedScopeNames_NonLang.ContainsKey(options.InstallationScope))
                 InstallationScope = CommonTranslations.InvertedScopeNames_NonLang[options.InstallationScope];
             CustomParameters = options.CustomParameters;
+            CustomEnvironmentVariables = options.CustomEnvironmentVariables;
         }
 
         /// <summary>
@@ -122,6 +124,7 @@ namespace UniGetUI.PackageEngine.PackageClasses
             if (InstallationScope != null)
                 options.InstallationScope = CommonTranslations.ScopeNames_NonLang[InstallationScope.Value];
             options.CustomParameters = CustomParameters;
+            options.CustomEnvironmentVariables = CustomEnvironmentVariables;
             return options;
         }
 
@@ -227,6 +230,7 @@ namespace UniGetUI.PackageEngine.PackageClasses
         public override string ToString()
         {
             string customparams = CustomParameters != null ? string.Join(",", CustomParameters) : "[]";
+            string customenvs = CustomEnvironmentVariables != null ? string.Join(",", CustomEnvironmentVariables) : "{}";
             return $"<InstallationOptions: SkipHashCheck={SkipHashCheck};" +
                    $"InteractiveInstallation={InteractiveInstallation};" +
                    $"RunAsAdministrator={RunAsAdministrator};" +
@@ -235,7 +239,8 @@ namespace UniGetUI.PackageEngine.PackageClasses
                    $"InstallationScope={InstallationScope};" +
                    $"InstallationScope={CustomInstallLocation};" +
                    $"CustomParameters={customparams};" +
-                   $"RemoveDataOnUninstall={RemoveDataOnUninstall}>";
+                   $"RemoveDataOnUninstall={RemoveDataOnUninstall};" +
+                   $"CustomEnvironmentVariables={customenvs}>";
         }
     }
 }

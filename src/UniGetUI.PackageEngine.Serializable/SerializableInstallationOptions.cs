@@ -10,6 +10,7 @@ namespace UniGetUI.PackageEngine.Serializable
         public List<string> CustomParameters { get; set; } = [];
         public bool PreRelease { get; set; }
         public string CustomInstallLocation { get; set; } = "";
+        public Dictionary<string, string> CustomEnvironmentVariables { get; set; } = [];
         public string Version { get; set; } = "";
 
         public SerializableInstallationOptions_v1 Copy()
@@ -24,6 +25,7 @@ namespace UniGetUI.PackageEngine.Serializable
                 InteractiveInstallation = InteractiveInstallation,
                 PreRelease = PreRelease,
                 RunAsAdministrator = RunAsAdministrator,
+                CustomEnvironmentVariables = CustomEnvironmentVariables,
                 Version = Version,
             };
         }

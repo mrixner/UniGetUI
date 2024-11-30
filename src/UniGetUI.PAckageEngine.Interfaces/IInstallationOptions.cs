@@ -16,6 +16,7 @@ namespace UniGetUI.PackageEngine.Interfaces
         public bool RemoveDataOnUninstall { get; set; }
         public bool PreRelease { get; set; }
         public string CustomInstallLocation { get; set; }
+        public Dictionary<string, string> CustomEnvironmentVariables { get; set; }
         public IPackage Package { get; }
 
         /// <summary>

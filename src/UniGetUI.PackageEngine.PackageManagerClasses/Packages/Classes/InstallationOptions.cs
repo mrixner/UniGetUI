@@ -28,6 +28,7 @@ namespace UniGetUI.PackageEngine.PackageClasses
         public bool RemoveDataOnUninstall { get; set; }
         public bool PreRelease { get; set; }
         public string CustomInstallLocation { get; set; } = "";
+        public Dictionary<string, string> CustomEnvironmentVariables { get; set; } = [];
 
         public IPackage Package { get; }
 
@@ -135,6 +136,7 @@ namespace UniGetUI.PackageEngine.PackageClasses
             }
 
             CustomParameters = options.CustomParameters;
+            CustomEnvironmentVariables = options.CustomEnvironmentVariables;
         }
 
         /// <summary>
@@ -162,6 +164,7 @@ namespace UniGetUI.PackageEngine.PackageClasses
             }
 
             options.CustomParameters = CustomParameters;
+            options.CustomEnvironmentVariables = CustomEnvironmentVariables;
             return options;
         }
 
@@ -247,6 +250,7 @@ namespace UniGetUI.PackageEngine.PackageClasses
         public override string ToString()
         {
             string customparams = CustomParameters is not null ? string.Join(",", CustomParameters) : "[]";
+            string customenvs = CustomEnvironmentVariables != null ? string.Join(",", CustomEnvironmentVariables) : "{}";
             return $"<InstallationOptions: SkipHashCheck={SkipHashCheck};" +
                    $"InteractiveInstallation={InteractiveInstallation};" +
                    $"RunAsAdministrator={RunAsAdministrator};" +
@@ -255,7 +259,8 @@ namespace UniGetUI.PackageEngine.PackageClasses
                    $"InstallationScope={InstallationScope};" +
                    $"InstallationScope={CustomInstallLocation};" +
                    $"CustomParameters={customparams};" +
-                   $"RemoveDataOnUninstall={RemoveDataOnUninstall}>";
+                   $"RemoveDataOnUninstall={RemoveDataOnUninstall};" +
+                   $"CustomEnvironmentVariables={customenvs}>";
         }
     }
 }
