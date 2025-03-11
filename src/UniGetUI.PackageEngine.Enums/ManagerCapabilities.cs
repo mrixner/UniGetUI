@@ -28,6 +28,7 @@ namespace UniGetUI.PackageEngine.ManagerClasses.Manager
         public bool SupportsCustomSources = false;
         public bool SupportsCustomPackageIcons = false;
         public bool SupportsCustomPackageScreenshots = false;
+        public bool SupportsMultipleDestinations = true;
         public SourceCapabilities Sources { get; set; }
         public ManagerCapabilities()
         {

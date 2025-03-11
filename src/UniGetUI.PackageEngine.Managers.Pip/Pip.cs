@@ -49,6 +49,7 @@ namespace UniGetUI.PackageEngine.Managers.PipManager
                 SupportsCustomScopes = true,
                 CanDownloadInstaller = true,
                 SupportsPreRelease = true,
+                SupportsMultipleDestinations = true,
             };
 
             Properties = new ManagerProperties

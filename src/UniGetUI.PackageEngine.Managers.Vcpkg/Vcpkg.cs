@@ -40,6 +40,7 @@ namespace UniGetUI.PackageEngine.Managers.VcpkgManager
             {
                 CanRunAsAdmin = true,
                 SupportsCustomSources = true,
+                SupportsMultipleDestinations = true,
             };
 
             string DefaultTriplet = GetDefaultTriplet();
